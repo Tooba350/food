@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Portal - Every Craving</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Persistent Header -->
+    <header class="header">
+        <div class="logo nav-link" data-target="home-view" style="cursor:pointer;">FOOD PORTAL</div>
+        <nav class="nav">
+            <a href="#" class="nav-link" data-target="home-view">Home</a>
+            <a href="#" class="nav-link" data-target="junk-food-view">Junk Food</a>
+            <a href="#" class="nav-link" data-target="desi-view">Desi</a>
+            <a href="#" class="nav-link" data-target="seafood-view">Seafood</a>
+            <a href="#" class="nav-link" data-target="dessert-view">Desserts</a>
+            <a href="#" class="search-link">Search <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+        </nav>
+    </header>
+
+    <!-- 1. HOME VIEW -->
+    <div id="home-view" class="view active bg-home">
+        <div class="bg-glow"></div>
+        <main class="main-content">
+            <div class="center-text">
+                <h1>ONE PORTAL.<br>EVERY CRAVING.</h1>
+                <p>From Desi Classics and BBQ to Junk Food and Seafood.</p>
+                <div class="btn-group-grid">
+                    <button class="btn nav-btn" data-target="junk-food-view">JUNK FOOD</button>
+                    <button class="btn nav-btn" data-target="desi-view">DESI DYNASTY</button>
+                    <button class="btn nav-btn" data-target="seafood-view">SEAFOOD</button>
+                    <button class="btn nav-btn" data-target="dessert-view">DESSERTS</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 2. JUNK FOOD VIEW -->
+    <div id="junk-food-view" class="view bg-junk">
+        <div class="bg-glow"></div>
+        <main class="main-content">
+            <div class="hero-text">
+                <h1>LAHORE'S<br>JUNK FOOD LEGENDS</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card" data-id="junk-1">
+                    <div class="card-img-container"><img src="" alt="Wehshi Burger"></div>
+                    <div class="card-content"><h2>WEHSHI BURGER</h2><p>Johnny & Jugnu</p></div>
+                </div>
+                <div class="card" data-id="junk-2">
+                    <div class="card-img-container"><span class="badge">MUST TRY</span><img src="" alt="Kitchen Special Pizza"></div>
+                    <div class="card-content"><h2>KITCHEN SPECIAL PIZZA</h2><p>Fork n Knives</p></div>
+                </div>
+                <div class="card" data-id="junk-3">
+                    <div class="card-img-container"><img src="" alt="Gourmet Fries"></div>
+                    <div class="card-content"><h2>GOURMET FRIES</h2><p>OPTP</p></div>
+                </div>
+                <div class="card" data-id="junk-4">
+                    <div class="card-img-container"><img src="" alt="Son of a Bun Chicken"></div>
+                    <div class="card-content"><h2>SON OF A BUN</h2><p>Howdy</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 3. DESI VIEW -->
+    <div id="desi-view" class="view bg-desi">
+        <div class="bg-glow glow-golden"></div>
+        <main class="main-content">
+            <div class="hero-text">
+                <h1>LAHORE'S<br>DESI DYNASTY</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card" data-id="desi-1">
+                    <div class="card-img-container"><img src="" alt="Mutton Karahi"></div>
+                    <div class="card-content"><h2>MUTTON KARAHI</h2><p>Butt Karahi</p></div>
+                </div>
+                <div class="card" data-id="desi-2">
+                    <div class="card-img-container"><img src="" alt="Beef Nihari"></div>
+                    <div class="card-content"><h2>BEEF NIHARI</h2><p>Waris Nihari</p></div>
+                </div>
+                <div class="card" data-id="desi-3">
+                    <div class="card-img-container"><img src="" alt="Chicken Biryani"></div>
+                    <div class="card-content"><h2>CHICKEN BIRYANI</h2><p>Waqas Briyani</p></div>
+                </div>
+                <div class="card" data-id="desi-4">
+                    <div class="card-img-container"><img src="" alt="Tawa Chicken"></div>
+                    <div class="card-content"><h2>TAWA CHICKEN</h2><p>Arif Chatkhara</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 4. SEAFOOD VIEW -->
+    <div id="seafood-view" class="view bg-seafood">
+        <div class="bg-glow glow-moody"></div>
+        <main class="main-content">
+            <div class="hero-text">
+                <h1>LAHORE'S<br>COASTAL TREASURES</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card" data-id="sea-1">
+                    <div class="card-img-container"><img src="" alt="Finger Fish"></div>
+                    <div class="card-content"><h2>FINGER FISH</h2><p>Bashir Darul Mahi</p></div>
+                </div>
+                <div class="card" data-id="sea-2">
+                    <div class="card-img-container"><img src="" alt="Grilled Prawns"></div>
+                    <div class="card-content"><h2>GRILLED PRAWNS</h2><p>Fresh Catch</p></div>
+                </div>
+                <div class="card" data-id="sea-3">
+                    <div class="card-img-container"><img src="" alt="Tawa Machli"></div>
+                    <div class="card-content"><h2>TAWA MACHLI</h2><p>Local Catch</p></div>
+                </div>
+                <div class="card" data-id="sea-4">
+                    <div class="card-img-container"><img src="" alt="Fish Tikka"></div>
+                    <div class="card-content"><h2>FISH TIKKA</h2><p>Rashid Seafood</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 5. DESSERT VIEW -->
+    <div id="dessert-view" class="view bg-dessert">
+        <div class="bg-glow glow-warm"></div>
+        <main class="main-content">
+            <div class="hero-text">
+                <h1>LAHORE'S<br>SWEET ESCAPE</h1>
+            </div>
+            <div class="cards-grid">
+                <div class="card" data-id="dessert-1">
+                    <div class="card-img-container"><img src="" alt="Gourmet Ice Cream"></div>
+                    <div class="card-content"><h2>GOURMET ICE CREAM</h2><p>Chaman</p></div>
+                </div>
+                <div class="card" data-id="dessert-2">
+                    <div class="card-img-container"><img src="" alt="Hot Gulab Jamuns"></div>
+                    <div class="card-content"><h2>HOT GULAB JAMUNS</h2><p>Local Sweets</p></div>
+                </div>
+                <div class="card" data-id="dessert-3">
+                    <div class="card-img-container"><img src="" alt="Nan Khatai"></div>
+                    <div class="card-content"><h2>NAN KHATAI</h2><p>Khalifa</p></div>
+                </div>
+                <div class="card" data-id="dessert-4">
+                    <div class="card-img-container"><img src="" alt="Chocolate Molten Lava Cake"></div>
+                    <div class="card-content"><h2>MOLTEN LAVA CAKE</h2><p>Sweet End</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="itemModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImg" src="" alt="Food Image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">Restaurant Name</h2>
+                    <p class="modal-desc" id="modalDesc">Legendary description here...</p>
+                    <p class="modal-price" id="modalPrice">Rs. 0</p>
+                    <button class="btn modal-btn">ORDER NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
