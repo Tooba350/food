@@ -3,174 +3,602 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Portal - Every Craving</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>FOOD PORTAL - Lahore's Culinary Legends</title>
+    <style>
+        /* Premium Dark & Gold Theme Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle, rgba(40,30,10,0.6) 0%, rgba(10,10,10,1) 80%);
+        }
+
+        /* Transparent Premium Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 179, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #FFB300;
+        }
+
+        nav .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav .nav-links a:hover, nav .nav-links a.active {
+            color: #FFB300;
+        }
+
+        /* Container Pages Wrapper */
+        .page-section {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .page-section.active-page {
+            display: block;
+        }
+
+        /* 1. HERO HOME PAGE STYLE */
+        #home-page {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #home-page.active-page {
+            display: flex;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #FFB300;
+            margin-bottom: 40px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* Category Grid on Home Page */
+        .category-shortcuts {
+            display: flex;
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .shortcut-card {
+            background: rgba(25, 25, 25, 0.65);
+            border: 1px solid rgba(255, 179, 0, 0.2);
+            padding: 25px 35px;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 220px;
+            transition: all 0.4s ease;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .shortcut-card:hover {
+            transform: translateY(-8px);
+            border-color: #FFB300;
+            box-shadow: 0 10px 20px rgba(255, 179, 0, 0.15);
+            background: rgba(255, 179, 0, 0.05);
+        }
+
+        .shortcut-card h3 {
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .shortcut-card p {
+            font-size: 12px;
+            color: #b3b3b3;
+        }
+
+        /* COMMON CATEGORY PAGES STYLE (Junk, Desi, Seafood, Dessert) */
+        .category-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .category-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .category-header p {
+            color: #FFB300;
+            font-size: 15px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        /* Food Grid Elements */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .food-card {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.35s ease;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .food-card:hover {
+            transform: translateY(-10px);
+            border-color: #FFB300;
+            box-shadow: 0 15px 30px rgba(255, 179, 0, 0.2);
+        }
+
+        .food-img-container {
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .food-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .food-card:hover .food-img-container img {
+            transform: scale(1.1);
+        }
+
+        .food-info {
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(to top, #111111, #1a1a1a);
+        }
+
+        .food-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .food-info p {
+            color: #FFB300;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CLEAN INTERACTIVE MODAL (POPUP) STYLE */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active-modal {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #141414;
+            border: 1px solid #FFB300;
+            max-width: 650px;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.85);
+            transition: transform 0.4s ease;
+            box-shadow: 0 20px 50px rgba(255, 179, 0, 0.15);
+        }
+
+        .modal-overlay.active-modal .modal-content {
+            transform: scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #FFB300;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .modal-restaurant {
+            color: #FFB300;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .modal-desc {
+            color: #cccccc;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .order-btn {
+            background: #FFB300;
+            color: #000000;
+            border: none;
+            padding: 12px 35px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .order-btn:hover {
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 36px; }
+            nav .nav-links { gap: 15px; }
+            nav .nav-links a { font-size: 12px; }
+            .category-header h2 { font-size: 28px; }
+        }
+    </style>
 </head>
 <body>
-    
-    <!-- Persistent Header -->
-    <header class="header">
-        <div class="logo nav-link" data-target="home-view" style="cursor:pointer;">FOOD PORTAL</div>
-        <nav class="nav">
-            <a href="#" class="nav-link" data-target="home-view">Home</a>
-            <a href="#" class="nav-link" data-target="junk-food-view">Junk Food</a>
-            <a href="#" class="nav-link" data-target="desi-view">Desi</a>
-            <a href="#" class="nav-link" data-target="seafood-view">Seafood</a>
-            <a href="#" class="nav-link" data-target="dessert-view">Desserts</a>
-            <a href="#" class="search-link">Search <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+
+    <header>
+        <div class="logo" onclick="switchPage('home')">Food <span>Portal</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" id="link-home" class="active" onclick="switchPage('home')">Home</a></li>
+                <li><a href="#" id="link-junk" onclick="switchPage('junk')">Junk Food</a></li>
+                <li><a href="#" id="link-desi" onclick="switchPage('desi')">Desi Classics</a></li>
+                <li><a href="#" id="link-seafood" onclick="switchPage('seafood')">Seafood</a></li>
+                <li><a href="#" id="link-dessert" onclick="switchPage('dessert')">Desserts</a></li>
+            </ul>
         </nav>
     </header>
 
-    <!-- 1. HOME VIEW -->
-    <div id="home-view" class="view active bg-home">
-        <div class="bg-glow"></div>
-        <main class="main-content">
-            <div class="center-text">
-                <h1>ONE PORTAL.<br>EVERY CRAVING.</h1>
-                <p>From Desi Classics and BBQ to Junk Food and Seafood.</p>
-                <div class="btn-group-grid">
-                    <button class="btn nav-btn" data-target="junk-food-view">JUNK FOOD</button>
-                    <button class="btn nav-btn" data-target="desi-view">DESI DYNASTY</button>
-                    <button class="btn nav-btn" data-target="seafood-view">SEAFOOD</button>
-                    <button class="btn nav-btn" data-target="dessert-view">DESSERTS</button>
-                </div>
+    <main id="home-page" class="page-section active-page">
+        <div class="hero-content">
+            <h1>ONE PORTAL.<br>EVERY CRAVING.</h1>
+            <p>Discover Lahore's Most Iconic & Famous Culinary Legends</p>
+        </div>
+        <div class="category-shortcuts">
+            <div class="shortcut-card" onclick="switchPage('junk')">
+                <h3>Junk Food</h3>
+                <p>Burgers, Pizza & Fries</p>
             </div>
-        </main>
-    </div>
+            <div class="shortcut-card" onclick="switchPage('desi')">
+                <h3>Desi Classics</h3>
+                <p>Karahi, Nihari & Biryani</p>
+            </div>
+            <div class="shortcut-card" onclick="switchPage('seafood')">
+                <h3>Seafood</h3>
+                <p>Finger Fish & Grills</p>
+            </div>
+            <div class="shortcut-card" onclick="switchPage('dessert')">
+                <h3>Desserts</h3>
+                <p>Ice Cream & Sweet Treats</p>
+            </div>
+        </div>
+    </main>
 
-    <!-- 2. JUNK FOOD VIEW -->
-    <div id="junk-food-view" class="view bg-junk">
-        <div class="bg-glow"></div>
-        <main class="main-content">
-            <div class="hero-text">
-                <h1>LAHORE'S<br>JUNK FOOD LEGENDS</h1>
+    <section id="junk-page" class="page-section">
+        <div class="category-container">
+            <div class="category-header">
+                <h2>Lahore's Junk Food Legends</h2>
+                <p>The Ultimate Cheat Day Heavyweights</p>
             </div>
-            <div class="cards-grid">
-                <div class="card" data-id="junk-1">
-                    <div class="card-img-container"><img src="" alt="Wehshi Burger"></div>
-                    <div class="card-content"><h2>WEHSHI BURGER</h2><p>Johnny & Jugnu</p></div>
+            <div class="food-grid">
+                <div class="food-card" onclick="openModal('Johnny & Jugnu', 'Wehshi Burger', 'Lahore\'s absolute viral favorite. A crispy, juicy chicken fillet entirely drenched in their legendary spicy, secret Wehshi sauce.', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Burger"></div>
+                    <div class="food-info">
+                        <h4>Wehshi Burger</h4>
+                        <p>Johnny & Jugnu</p>
+                    </div>
                 </div>
-                <div class="card" data-id="junk-2">
-                    <div class="card-img-container"><span class="badge">MUST TRY</span><img src="" alt="Kitchen Special Pizza"></div>
-                    <div class="card-content"><h2>KITCHEN SPECIAL PIZZA</h2><p>Fork n Knives</p></div>
+                <div class="food-card" onclick="openModal('Fork n Knives', 'Kitchen Special Pizza', 'The ultimate heavy cheese-pull crown jewel. Thick crust loaded with chunky chicken, premium mozzarella, and traditional spices.', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Pizza"></div>
+                    <div class="food-info">
+                        <h4>Kitchen Special Pizza</h4>
+                        <p>Fork n Knives</p>
+                    </div>
                 </div>
-                <div class="card" data-id="junk-3">
-                    <div class="card-img-container"><img src="" alt="Gourmet Fries"></div>
-                    <div class="card-content"><h2>GOURMET FRIES</h2><p>OPTP</p></div>
+                <div class="food-card" onclick="openModal('OPTP', 'Gourmet Loaded Fries', 'Perfectly seasoned golden skin-on fries completely smothered in a premium warm cheddar cheese sauce with spicy jalapeños.', 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80" alt="Fries"></div>
+                    <div class="food-info">
+                        <h4>Gourmet Fries</h4>
+                        <p>OPTP</p>
+                    </div>
                 </div>
-                <div class="card" data-id="junk-4">
-                    <div class="card-img-container"><img src="" alt="Son of a Bun Chicken"></div>
-                    <div class="card-content"><h2>SON OF A BUN</h2><p>Howdy</p></div>
+                <div class="food-card" onclick="openModal('Howdy', 'Son of a Bun', 'A massive double-patty charcoal-grilled crunch chicken masterpiece served with signature smoky sauce and fresh greens.', 'https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?auto=format&fit=crop&w=600&q=80" alt="Fried Chicken"></div>
+                    <div class="food-info">
+                        <h4>Son of a Bun</h4>
+                        <p>Howdy</p>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
 
-    <!-- 3. DESI VIEW -->
-    <div id="desi-view" class="view bg-desi">
-        <div class="bg-glow glow-golden"></div>
-        <main class="main-content">
-            <div class="hero-text">
-                <h1>LAHORE'S<br>DESI DYNASTY</h1>
+    <section id="desi-page" class="page-section">
+        <div class="category-container">
+            <div class="category-header">
+                <h2>Lahore's Desi Dynasty</h2>
+                <p>Authentic Traditional Heritage Flavors</p>
             </div>
-            <div class="cards-grid">
-                <div class="card" data-id="desi-1">
-                    <div class="card-img-container"><img src="" alt="Mutton Karahi"></div>
-                    <div class="card-content"><h2>MUTTON KARAHI</h2><p>Butt Karahi</p></div>
+            <div class="food-grid">
+                <div class="food-card" onclick="openModal('Butt Karahi', 'Mutton Karahi', 'The pride of Laxmi Chowk. Fresh tender mutton cooked in pure butter, tomatoes, ginger, and green chilies on high flame.', 'https://images.unsplash.com/photo-1601050690597-df056fb4ce78?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1601050690597-df056fb4ce78?auto=format&fit=crop&w=600&q=80" alt="Karahi"></div>
+                    <div class="food-info">
+                        <h4>Mutton Karahi</h4>
+                        <p>Butt Karahi</p>
+                    </div>
                 </div>
-                <div class="card" data-id="desi-2">
-                    <div class="card-img-container"><img src="" alt="Beef Nihari"></div>
-                    <div class="card-content"><h2>BEEF NIHARI</h2><p>Waris Nihari</p></div>
+                <div class="food-card" onclick="openModal('Waris Nihari', 'Special Beef Nihari', 'Slow-cooked aromatic beef shank stew stewed overnight, topped with rich bone marrow (Nali) and spicy tarka.', 'https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=600&q=80" alt="Nihari"></div>
+                    <div class="food-info">
+                        <h4>Beef Nihari</h4>
+                        <p>Waris Nihari</p>
+                    </div>
                 </div>
-                <div class="card" data-id="desi-3">
-                    <div class="card-img-container"><img src="" alt="Chicken Biryani"></div>
-                    <div class="card-content"><h2>CHICKEN BIRYANI</h2><p>Waqas Briyani</p></div>
+                <div class="food-card" onclick="openModal('Waqas Biryani', 'Chicken Biryani', 'Halki-mirch aromatic basmati rice served with giant tender chicken pieces and a side of traditional shami kebab.', 'https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=600&q=80" alt="Biryani"></div>
+                    <div class="food-info">
+                        <h4>Chicken Biryani</h4>
+                        <p>Waqas Biryani</p>
+                    </div>
                 </div>
-                <div class="card" data-id="desi-4">
-                    <div class="card-img-container"><img src="" alt="Tawa Chicken"></div>
-                    <div class="card-content"><h2>TAWA CHICKEN</h2><p>Arif Chatkhara</p></div>
+                <div class="food-card" onclick="openModal('Arif Chatkhara', 'Tawa Chicken', 'Spicy, tangy shredded chicken fried relentlessly on a massive iron tawa in pure ghee with crushed green chilies.', 'https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=600&q=80" alt="Tawa Chicken"></div>
+                    <div class="food-info">
+                        <h4>Tawa Chicken</h4>
+                        <p>Arif Chatkhara</p>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
 
-    <!-- 4. SEAFOOD VIEW -->
-    <div id="seafood-view" class="view bg-seafood">
-        <div class="bg-glow glow-moody"></div>
-        <main class="main-content">
-            <div class="hero-text">
-                <h1>LAHORE'S<br>COASTAL TREASURES</h1>
+    <section id="seafood-page" class="page-section">
+        <div class="category-container">
+            <div class="category-header">
+                <h2>Lahore's Coastal Treasures</h2>
+                <p>The Fresh Crisp Catch of the City</p>
             </div>
-            <div class="cards-grid">
-                <div class="card" data-id="sea-1">
-                    <div class="card-img-container"><img src="" alt="Finger Fish"></div>
-                    <div class="card-content"><h2>FINGER FISH</h2><p>Bashir Darul Mahi</p></div>
+            <div class="food-grid">
+                <div class="food-card" onclick="openModal('Bashir Darul Mahi', 'Traditional Fried Fish', 'Succulent Rahu fish pieces coated in a spicy, secret gram flour (Besan) batter and deep-fried to absolute golden crunch.', 'https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=600&q=80" alt="Fried Fish"></div>
+                    <div class="food-info">
+                        <h4>Fried Finger Fish</h4>
+                        <p>Bashir Darul Mahi</p>
+                    </div>
                 </div>
-                <div class="card" data-id="sea-2">
-                    <div class="card-img-container"><img src="" alt="Grilled Prawns"></div>
-                    <div class="card-content"><h2>GRILLED PRAWNS</h2><p>Fresh Catch</p></div>
-                </div>
-                <div class="card" data-id="sea-3">
-                    <div class="card-img-container"><img src="" alt="Tawa Machli"></div>
-                    <div class="card-content"><h2>TAWA MACHLI</h2><p>Local Catch</p></div>
-                </div>
-                <div class="card" data-id="sea-4">
-                    <div class="card-img-container"><img src="" alt="Fish Tikka"></div>
-                    <div class="card-content"><h2>FISH TIKKA</h2><p>Rashid Seafood</p></div>
+                <div class="food-card" onclick="openModal('Rashid Seafood', 'Charcoal Grilled Fish', 'Whole premium fish marinated in local organic herbs and char-grilled over raw coals, served with lemon squeeze.', 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="Grilled Fish"></div>
+                    <div class="food-info">
+                        <h4>Grilled Fish</h4>
+                        <p>Rashid Seafood</p>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
 
-    <!-- 5. DESSERT VIEW -->
-    <div id="dessert-view" class="view bg-dessert">
-        <div class="bg-glow glow-warm"></div>
-        <main class="main-content">
-            <div class="hero-text">
-                <h1>LAHORE'S<br>SWEET ESCAPE</h1>
+    <section id="dessert-page" class="page-section">
+        <div class="category-container">
+            <div class="category-header">
+                <h2>Lahore's Sweet Escape</h2>
+                <p>The Perfect Sugar Rush Finale</p>
             </div>
-            <div class="cards-grid">
-                <div class="card" data-id="dessert-1">
-                    <div class="card-img-container"><img src="" alt="Gourmet Ice Cream"></div>
-                    <div class="card-content"><h2>GOURMET ICE CREAM</h2><p>Chaman</p></div>
+            <div class="food-grid">
+                <div class="food-card" onclick="openModal('Chaman Ice Cream', 'Special Pista Ice Cream', 'Lahore\'s classic dense, intensely creamy traditional scoop loaded with premium crushed pistachios and almonds.', 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80" alt="Ice Cream"></div>
+                    <div class="food-info">
+                        <h4>Pista Ice Cream</h4>
+                        <p>Chaman Ice Cream</p>
+                    </div>
                 </div>
-                <div class="card" data-id="dessert-2">
-                    <div class="card-img-container"><img src="" alt="Hot Gulab Jamuns"></div>
-                    <div class="card-content"><h2>HOT GULAB JAMUNS</h2><p>Local Sweets</p></div>
-                </div>
-                <div class="card" data-id="dessert-3">
-                    <div class="card-img-container"><img src="" alt="Nan Khatai"></div>
-                    <div class="card-content"><h2>NAN KHATAI</h2><p>Khalifa</p></div>
-                </div>
-                <div class="card" data-id="dessert-4">
-                    <div class="card-img-container"><img src="" alt="Chocolate Molten Lava Cake"></div>
-                    <div class="card-content"><h2>MOLTEN LAVA CAKE</h2><p>Sweet End</p></div>
+                <div class="food-card" onclick="openModal('Khalifa Bakers', 'Premium Almond Nan Khatai', 'Legendary crumbly, rich baked Nan Khatai cookies packed with whole premium roasted almonds and pure desi ghee goodness.', 'https://images.unsplash.com/photo-1605694041355-6b83f0f789d9?auto=format&fit=crop&w=600&q=80')">
+                    <div class="food-img-container"><img src="https://images.unsplash.com/photo-1605694041355-6b83f0f789d9?auto=format&fit=crop&w=600&q=80" alt="Nan Khatai"></div>
+                    <div class="food-info">
+                        <h4>Almond Nan Khatai</h4>
+                        <p>Khalifa Bakers</p>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
 
-    <!-- Modal Overlay -->
-    <div class="modal-overlay" id="itemModal">
+    <div class="modal-overlay" id="foodModal">
         <div class="modal-content">
-            <button class="close-btn" id="closeModal">&times;</button>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img src="" id="modalImg" class="modal-img" alt="Food Detail">
             <div class="modal-body">
-                <div class="modal-image">
-                    <img id="modalImg" src="" alt="Food Image">
-                </div>
-                <div class="modal-info">
-                    <h2 id="modalTitle">Restaurant Name</h2>
-                    <p class="modal-desc" id="modalDesc">Legendary description here...</p>
-                    <p class="modal-price" id="modalPrice">Rs. 0</p>
-                    <button class="btn modal-btn">ORDER NOW</button>
-                </div>
+                <div id="modalRestaurant" class="modal-restaurant">Restaurant Name</div>
+                <div id="modalTitle" class="modal-title">Food Title</div>
+                <div id="modalDesc" class="modal-desc">This is the legendary description of the item clicked.</div>
+                <button class="order-btn">Order Now From Legend</button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript -->
-    <script src="app.js"></script>
+    <script>
+        // Smooth Multi-page Router Function
+        function switchPage(pageName) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active-page');
+            });
+            // Remove active style from nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Activate chosen section and link
+            if(pageName === 'home') {
+                document.getElementById('home-page').classList.add('active-page');
+                document.getElementById('link-home').classList.add('active');
+            } else if(pageName === 'junk') {
+                document.getElementById('junk-page').classList.add('active-page');
+                document.getElementById('link-junk').classList.add('active');
+            } else if(pageName === 'desi') {
+                document.getElementById('desi-page').classList.add('active-page');
+                document.getElementById('link-desi').classList.add('active');
+            } else if(pageName === 'seafood') {
+                document.getElementById('seafood-page').classList.add('active-page');
+                document.getElementById('link-seafood').classList.add('active');
+            } else if(pageName === 'dessert') {
+                document.getElementById('dessert-page').classList.add('active-page');
+                document.getElementById('link-dessert').classList.add('active');
+            }
+            
+            // Scroll back to top on page change
+            window.scrollTo(0, 0);
+        }
+
+        // Modal Pop-up Logic
+        function openModal(restaurant, itemTitle, itemDesc, imgSrc) {
+            document.getElementById('modalRestaurant').innerText = restaurant;
+            document.getElementById('modalTitle').innerText = itemTitle;
+            document.getElementById('modalDesc').innerText = itemDesc;
+            document.getElementById('modalImg').src = imgSrc;
+            
+            document.getElementById('foodModal').classList.add('active-modal');
+        }
+
+        function closeModal() {
+            document.getElementById('foodModal').classList.remove('active-modal');
+        }
+
+        // Close modal automatically if clicked outside the dark content box
+        window.onclick = function(event) {
+            let modal = document.getElementById('foodModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
